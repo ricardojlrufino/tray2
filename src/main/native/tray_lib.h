@@ -31,7 +31,7 @@ typedef void (*menu_handler_t) (const char*);
 
 // *************** /types
 
-#define MAX_MENU_ITEMS 15
+#define MAX_MENU_ITEMS 30
 
 int tray_started = 0;
 
@@ -43,7 +43,7 @@ int menu_current_used = 0;
 struct tray_menu menus_cache[MAX_MENU_ITEMS];
 
 int submenu_current_used = 0;
-struct tray_menu submenu_cache[5][MAX_MENU_ITEMS];
+struct tray_menu submenu_cache[MAX_MENU_ITEMS];
 
 
 extern void set_menu_handler(menu_handler_t handler);

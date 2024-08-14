@@ -67,24 +67,25 @@ void set_menu(const tray_menu_ref *menus, int size){
 
          if(menus[i].submenu_size > 0){
 
-            printf("Create submenu: %s - Size: %d \n",menus[i].text , menus[i].submenu_size);
+            printf("[i=%d] Create submenu: %s - Size: %d \n", i, menus[i].text , menus[i].submenu_size);
 
             int submenu_size = menus[i].submenu_size;
             const char *text = menus[i].text;
 
-            struct tray_menu *submenu = submenu_cache[submenu_current_used++];
+            struct tray_menu *submenu = (submenu_cache + submenu_current_used++);
 
             for(int j = 0; j < submenu_size; j++){
-                printf(" - %s \n", menus[i].text);
                 i++;
+                printf("[i=%d] - %s \n", i, menus[i].text);
                 submenu[j] = (struct tray_menu){.text = menus[i].text, .cb = notify_cb};
                 // menus[i].submenu[j].text
             }
 
             submenu[submenu_size] = (struct tray_menu){.text = NULL}; // terminator
-            //submenu_current_used += submenu_size;
+            submenu_current_used += submenu_size;
             menus_cache[menu_current_used++] = (struct tray_menu){.text = text, .submenu = submenu};
          }else{
+            printf("[i=%d] Create menu: %s - Size: %d \n", i, menus[i].text , menus[i].submenu_size);
             menus_cache[menu_current_used++] = (struct tray_menu){.text = menus[i].text, .cb = notify_cb};
          }
     }
@@ -102,6 +103,8 @@ void notify_cb(struct tray_menu *item) {
   printf("[notify_cb] menu: %s \n", item->text);
   if (menu_handler != NULL) {
      menu_handler(item->text);  // Call handler
+  }else{
+    printf("[notify_cb] handler not defined \n");
   }
 }
 
