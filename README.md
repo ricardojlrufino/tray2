@@ -5,8 +5,9 @@ Java's implementation of systemtray does not work on all operating systems. This
 This lib is a wrapper of the class tray implementation in C (https://github.com/zserge/tray), using JNA.
 
 ## Features:
- * Super tiny
+ * Super tiny ( < 50kb ) + JNA
  * Menu Icon
+ * Icon transparency support
  * Change Menu Icon
  * Sub-Menus (only 1 level)
 
@@ -18,12 +19,20 @@ This lib is a wrapper of the class tray implementation in C (https://github.com/
 ## TODO
 * [ ] Build for Windows
 * [ ] Build for Mac
+* [ ] Github Actions to build binary/lib
+* [ ] Add https://jitpack.io/ release documentation
+* [ ] Use Java Systemtray if enviroment is supported 
 
 NOTE: This library is in alpha/experimental stage, if you use, please make leave a mensage(issue).
 
 ## Example
 
 See [src/test/java/example/Main.java]()
+
+## Alternatives
+
+* dorkbox/SystemTray - https://github.com/dorkbox/SystemTray
+  * But add a lot of dependencies (+ 8MB), like kotlin, javassist, which in my opinion are totally unnecessary
 
 ## License
 
