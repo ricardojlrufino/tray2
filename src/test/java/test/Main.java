@@ -30,15 +30,15 @@ public class Main {
             JOptionPane.showMessageDialog(null, "OK2");
         }));
 
-//        setIconMenu.add(new MenuItem("Icon1", () -> {
-//            tray.setIcon("indicator-messages-new");
-//            JOptionPane.showMessageDialog(null, "Icon1");
-//        }));
-//
-//        setIconMenu.add(new MenuItem("Icon2", () -> {
-//            tray.setIcon("indicator-messages");
-//            JOptionPane.showMessageDialog(null, "Icon2");
-//        }));
+        setIconMenu.add(new MenuItem("Icon1", () -> {
+            tray.setIcon("indicator-messages-new");
+            JOptionPane.showMessageDialog(null, "Icon1");
+        }));
+
+        setIconMenu.add(new MenuItem("Icon2", () -> {
+            tray.setIcon("indicator-messages");
+            JOptionPane.showMessageDialog(null, "Icon2");
+        }));
 
 
         MenuItem setText = tray.addMenu(new MenuItem("SetText", () -> {

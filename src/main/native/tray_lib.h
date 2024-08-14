@@ -24,7 +24,6 @@
 typedef struct tray_menu_ref{
 	const char *text;
 	int submenu_size;
-	struct tray_menu_ref *submenu;
 } tray_menu_ref;
 
 // callback
@@ -40,6 +39,7 @@ struct tray tray;
 
 menu_handler_t menu_handler;
 
+int menu_current_used = 0;
 struct tray_menu menus_cache[MAX_MENU_ITEMS];
 
 int submenu_current_used = 0;

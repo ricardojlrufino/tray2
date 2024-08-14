@@ -24,32 +24,27 @@ public interface Tray2Library extends Library {
 
     default void create(Tray2 tray) {
 
+        int submenusSize = tray.getMenus().stream().mapToInt(x->x.getSubmenuList().size()).sum();
+        int size = tray.getMenus().size() + submenusSize;
+
         // Initialize menus
         menu_item menuRef = new menu_item();
-        final menu_item[] array = (menu_item[]) menuRef.toArray(tray.getMenus().size());
+        final menu_item[] array = (menu_item[]) menuRef.toArray(size);
 
         // Add to list
         List<MenuItem> menus = tray.getMenus();
-        for (int i = 0; i < menus.size(); i++) {
-            MenuItem menuItem = menus.get(i);
+
+        int i=0;
+        for (MenuItem menuItem: menus) {
             array[i].text = menuItem.getName();
+
             List<MenuItem> submenuList = menuItem.getSubmenuList();
-
-            if(!submenuList.isEmpty()){
-                menu_item submenuRef = new menu_item();
-                menu_item[] submenu = (menu_item[]) submenuRef.toArray(submenuList.size());
-                for (int j = 0; j < submenuList.size(); j++) {
-                    MenuItem submenuModel = submenuList.get(j);
-                    submenu[j].text = submenuModel.getName();
-                    submenuModel.setSubMenuNativeRef(submenu[j]);
-                }
-
-                array[i].submenu = submenu;
-                array[i].submenu_size = submenuList.size();
-                menuItem.setSubMenuNativeRef(submenuRef);
-            }else{
-                //array[i].submenu = Pointer.NULL;
+            array[i].submenu_size = submenuList.size();
+            for(MenuItem subitem: submenuList){
+                i++;
+                array[i].text = subitem.getName();
             }
+            i++;
         }
 
         Tray2Library.INSTANCE.set_menu(menuRef, array.length);
@@ -87,14 +82,12 @@ public interface Tray2Library extends Library {
 
     void start();
 
-    @Structure.FieldOrder({"text", "submenu_size", "submenu"})
+    @Structure.FieldOrder({"text", "submenu_size"})
     public static class menu_item extends Structure implements Structure.ByReference{
 
         public String text;
 
         public int submenu_size = 0;
-
-        public menu_item[] submenu = new menu_item[1];
 
     }
 }

@@ -39,4 +39,4 @@ build/
 
 # Build
 /src/main/native/dist/
-/src/main/native/test/
+/src/main/native/build/
