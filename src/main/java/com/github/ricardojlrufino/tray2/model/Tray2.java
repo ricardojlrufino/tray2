@@ -50,6 +50,13 @@ public class Tray2 implements Tray2Library.MenuHandlerCallback {
             if (item.getName().equals(text)) {
                 item.fireCallback();
                 Tray2Library.INSTANCE.update(this);
+            }else{
+                for (MenuItem menuItem : item.getSubmenuList()) {
+                    if (menuItem.getName().equals(text)) {
+                        menuItem.fireCallback();
+                        Tray2Library.INSTANCE.update(this);
+                    }
+                }
             }
         }
     }
