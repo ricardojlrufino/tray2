@@ -26,6 +26,7 @@ This lib is a wrapper of the class tray implementation in C (https://github.com/
 * [ ] Checked/unchecked menu items
 * [ ] Build for Mac
 * [ ] Github Actions to build binary/lib
+  * https://github.com/libuv/libuv/blob/v1.x/.github/workflows/CI-win.yml
 * [ ] Add https://jitpack.io/ release documentation
 * [ ] Use Java Systemtray if enviroment is supported 
 
@@ -51,6 +52,12 @@ Build jar for tests
 
 > mvn -Pdemo package  
 > java -jar target/tray2-demo.jar
+
+### Linux Compile
+
+> apt install build-essential make  
+> cd src/main/native  
+> make
 
 ### Windows Cross-Compile
 
