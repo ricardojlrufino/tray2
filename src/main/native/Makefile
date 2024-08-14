@@ -13,9 +13,9 @@ else ifeq ($(shell uname -s),Linux)
 	LIB_NAME = libtray2.so
 else ifeq ($(shell uname -s),Darwin)
 	TRAY_CFLAGS := -DTRAY_APPKIT=1
-	TRAY_LDFLAGS := -framework Cocoa
-	JNA_ARCH := darwin
-	LIB_NAME = libtray2.dyndll
+	TRAY_LDFLAGS := -framework Cocoa -framework Foundation
+	JNA_ARCH := darwin-x86-64
+	LIB_NAME = libtray2.dylib
 endif
 
 CFLAGS = -Wall -Wextra -fPIC $(TRAY_CFLAGS)
@@ -42,7 +42,7 @@ all: $(DIST_DIR) $(BUILD_DIR) tray.h $(DIST_DIR)/$(LIB_NAME) install
 tray.h:
 	# wget https://raw.githubusercontent.com/zserge/tray/master/tray.h
 	# fix all menu items have a check box - https://github.com/zserge/tray/pull/9/commits/59fb20564f1d70a7f3da493cef4f332923d9539f
-	wget https://raw.githubusercontent.com/zserge/tray/59fb20564f1d70a7f3da493cef4f332923d9539f/tray.h
+	curl -O  https://raw.githubusercontent.com/zserge/tray/59fb20564f1d70a7f3da493cef4f332923d9539f/tray.h
 	touch $@
 
 # Regra para criar o diretório de build

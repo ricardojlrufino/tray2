@@ -41,11 +41,6 @@ See [src/test/java/example/Main.java]()
 * dorkbox/SystemTray - https://github.com/dorkbox/SystemTray
   * But add a lot of dependencies (+ 8MB), like kotlin, javassist, which in my opinion are totally unnecessary
 
-## License
-
-This software is distributed under [MIT license](http://www.opensource.org/licenses/mit-license.php),
-so feel free to integrate it in your commercial products.
-
 ## Build
 
 Build jar for tests 
@@ -61,6 +56,23 @@ Build jar for tests
 
 ### Windows Cross-Compile
 
-> apt install mingw-w64 make wget  
+> apt install mingw-w64 make curl
 > cd src/main/native  
-> make CC=x86_64-w64-mingw32-gcc OS=Windows  
+> make CC=x86_64-w64-mingw32-gcc OS=Windows
+
+
+### MacOS Cross-Compile (from Linux)
+
+You can use Darling, from: https://github.com/darlinghq/darling/releases
+
+> sudo dpkg -i /home/ricardo/Downloads/darling_0.1.20230310.jammy_amd64.deb
+> darling shell
+> xcode-select --install
+> cd src/main/native
+> make 
+
+## License
+
+This software is distributed under [MIT license](http://www.opensource.org/licenses/mit-license.php),
+so feel free to integrate it in your commercial products.
+

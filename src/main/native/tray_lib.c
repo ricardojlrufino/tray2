@@ -116,7 +116,7 @@ void start(void)
 {
     if (tray_init(&tray) < 0) {
         printf("failed to create tray\n");
-        return 1;
+        return;
     }
     while (tray_loop(1) == 0) {
       tray_started = 1;
