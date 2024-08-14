@@ -1,4 +1,4 @@
-package test;
+package example;
 
 import com.github.ricardojlrufino.tray2.Tray2Library;
 import com.github.ricardojlrufino.tray2.model.MenuItem;

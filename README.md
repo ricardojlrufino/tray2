@@ -4,16 +4,20 @@ Java's implementation of systemtray does not work on all operating systems. This
 
 This lib is a wrapper of the class tray implementation in C (https://github.com/zserge/tray), using JNA.
 
-Features:
+## Features:
  * Super tiny
  * Menu Icon
  * Change Menu Icon
  * Sub-Menus (only 1 level)
 
-OS Tested:
+## OS Tested:
  * Ubuntu 22.04 - GNOME 3.36.8
- * [] Windows
- * [] Mac
+ * [ ] Windows
+ * [ ] Mac
 
 
 NOTE: This library is in alpha/experimental stage, if you use, please make leave a mensage(issue).
+
+## Example
+
+See [src/test/java/example/Main.java]()

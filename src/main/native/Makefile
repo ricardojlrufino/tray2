@@ -63,8 +63,8 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Regra de instalação
-test:
-	$(CC) $(CFLAGS) $(LDFLAGS)  test/test.c -o $(BUILD_DIR)/test
+example:
+	$(CC) $(CFLAGS) $(LDFLAGS)  example/example.c -o $(BUILD_DIR)/example
 
 # Regra de instalação
 install: $(DIST_DIR)/$(LIB_NAME)
@@ -74,4 +74,4 @@ install: $(DIST_DIR)/$(LIB_NAME)
 clean:
 	rm -rf $(BUILD_DIR) $(DIST_DIR) tray.h
 
-.PHONY: all install clean test
+.PHONY: all install clean example
