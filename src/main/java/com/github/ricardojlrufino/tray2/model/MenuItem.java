@@ -1,18 +1,13 @@
 package com.github.ricardojlrufino.tray2.model;
 
-import com.github.ricardojlrufino.tray2.Tray2Library;
-
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
+/**
+ * Systemtray definition/model for {@link com.github.ricardojlrufino.tray2.Tray2Library}
+ * @author Ricardo JL Rufino
+ */
 public class MenuItem {
-
-    private Tray2Library.menu_item submenuRef;
-
-    public void setSubMenuNativeRef(Tray2Library.menu_item submenuRef) {
-        this.submenuRef = submenuRef;
-    }
 
     public interface MenuListener {
         void call();

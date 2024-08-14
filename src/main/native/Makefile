@@ -1,25 +1,25 @@
 # Variáveis
 CC = gcc
 
-ifeq ($(OS),Windows_NT)
+ifeq ($(OS),Windows)
 	TRAY_CFLAGS := -DTRAY_WINAPI=1
 	TRAY_LDFLAGS :=
-	JNA_ARCH="win32-x86"
+	JNA_ARCH := win32-x86-x64
+	LIB_NAME = tray2.dll
 else ifeq ($(shell uname -s),Linux)
 	TRAY_CFLAGS := -DTRAY_APPINDICATOR=1 $(shell pkg-config --cflags appindicator3-0.1,gtk+-3.0)
-	TRAY_LDFLAGS := $(shell pkg-config --libs appindicator3-0.1,gtk+-3.0 )
-	JNA_ARCH="linux-x86-64"
+	TRAY_LDFLAGS := $(shell pkg-config --libs appindicator3-0.1,gtk+-3.0 ) -lgtk-3 -lappindicator3
+	JNA_ARCH := linux-x86-64
+	LIB_NAME = libtray2.so
 else ifeq ($(shell uname -s),Darwin)
 	TRAY_CFLAGS := -DTRAY_APPKIT=1
 	TRAY_LDFLAGS := -framework Cocoa
-	JNA_ARCH="darwin"
+	JNA_ARCH := darwin
+	LIB_NAME = libtray2.dyndll
 endif
 
 CFLAGS = -Wall -Wextra -fPIC $(TRAY_CFLAGS)
 LDFLAGS = $(TRAY_LDFLAGS)
-
-# Nome da biblioteca
-LIB_NAME = libtray2.so
 
 
 # Diretórios
@@ -56,7 +56,7 @@ $(DIST_DIR):
 
 # Regra para compilar a biblioteca 
 $(DIST_DIR)/$(LIB_NAME): $(OBJ_FILES)
-	$(CC) -shared  $(LDFLAGS) -o $@ $^ -lgtk-3 -lappindicator3
+	$(CC) -shared  $(LDFLAGS) -o $@ $^ 
 
 # Regra para compilar os arquivos objeto
 $(BUILD_DIR)/%.o: %.c
@@ -68,6 +68,7 @@ example:
 
 # Regra de instalação
 install: $(DIST_DIR)/$(LIB_NAME)
+	mkdir -p $(INSTALL_PATH)
 	cp $(DIST_DIR)/$(LIB_NAME) $(INSTALL_PATH)/$(LIB_NAME)
 
 # Regra de limpeza

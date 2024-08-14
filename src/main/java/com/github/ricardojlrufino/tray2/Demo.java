@@ -1,13 +1,14 @@
-package example;
+package com.github.ricardojlrufino.tray2;
 
-import com.github.ricardojlrufino.tray2.Tray2Library;
 import com.github.ricardojlrufino.tray2.model.MenuItem;
 import com.github.ricardojlrufino.tray2.model.Tray2;
 
 import javax.swing.*;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class Main {
+public class Demo {
     public static void main(String[] args) {
 
         Tray2 tray = new Tray2();
@@ -60,8 +61,15 @@ public class Main {
             System.exit(0);
         }));
 
-        URL resource = Main.class.getResource("/icon.png");
-        tray.setIcon(resource != null ? resource.getFile() : null);
+
+        Path iconPath = Paths.get(System.getProperty("user.dir"), "src/test/resources/icon.ico");
+
+        if(iconPath.toFile().exists()){
+            tray.setIcon(iconPath.toString());
+        }else{
+            URL resource = Demo.class.getResource("/icon.ico");
+            tray.setIcon(resource != null ? resource.getFile() : null);
+        }
 
         Tray2Library.INSTANCE.create(tray);
     }
