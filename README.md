@@ -10,6 +10,8 @@ This lib is a wrapper of the class tray implementation in C (https://github.com/
  * Icon transparency support
  * Change Menu Icon
  * Sub-Menus (only 1 level)
+ * Separators in the menu 
+
 
 ## OS Tested:
  * Ubuntu 22.04 - GNOME 3.36.8
@@ -17,6 +19,8 @@ This lib is a wrapper of the class tray implementation in C (https://github.com/
  * [ ] Mac
 
 ## TODO
+* [ ] Disabled/enabled menu items
+* [ ] Checked/unchecked menu items
 * [ ] Build for Windows
 * [ ] Build for Mac
 * [ ] Github Actions to build binary/lib
@@ -38,3 +42,11 @@ See [src/test/java/example/Main.java]()
 
 This software is distributed under [MIT license](http://www.opensource.org/licenses/mit-license.php),
 so feel free to integrate it in your commercial products.
+
+## Build
+
+### Windows Cross-Compile
+
+> apt install mingw-w64 make wget
+> cd src/main/native
+> make CC=x86_64-w64-mingw32-gcc OS=Windows_NT
