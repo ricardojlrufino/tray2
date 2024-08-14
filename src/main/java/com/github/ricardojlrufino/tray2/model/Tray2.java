@@ -6,6 +6,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Systemtray definition/model for {@link Tray2Library}
+ * @author Ricardo JL Rufino
+ */
 public class Tray2 implements Tray2Library.MenuHandlerCallback {
 
     public static final Logger logger = Logger.getLogger(Tray2.class.getName());
