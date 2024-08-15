@@ -2,14 +2,16 @@ package com.github.ricardojlrufino.tray2;
 
 import com.github.ricardojlrufino.tray2.model.MenuItem;
 import com.github.ricardojlrufino.tray2.model.Tray2;
+import com.github.ricardojlrufino.tray2.utils.IconUtils;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Demo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Tray2 tray = new Tray2();
 
@@ -17,28 +19,22 @@ public class Demo {
             JOptionPane.showMessageDialog(null, "OK");
         }));
 
-//        menuTest1.add(new MenuItem("Icon12", () -> {
-//            tray.setIcon("indicator-messages-new");
-//            JOptionPane.showMessageDialog(null, "Icon1");
-//        }));
-//
-//        menuTest1.add(new MenuItem("Icon22", () -> {
-//            tray.setIcon("indicator-messages");
-//            JOptionPane.showMessageDialog(null, "Icon2");
-//        }));
-
         MenuItem setIconMenu = tray.addMenu(new MenuItem("SetIcon", () -> {
             JOptionPane.showMessageDialog(null, "OK2");
         }));
 
         setIconMenu.add(new MenuItem("Icon1", () -> {
-            tray.setIcon("indicator-messages-new");
-            JOptionPane.showMessageDialog(null, "Icon1");
+            try {
+                tray.setIcon(IconUtils.getIconPath("/notification1.png"));
+            } catch (IOException e) {
+            }
         }));
 
         setIconMenu.add(new MenuItem("Icon2", () -> {
-            tray.setIcon("indicator-messages");
-            JOptionPane.showMessageDialog(null, "Icon2");
+            try {
+                tray.setIcon(IconUtils.getIconPath("/notification2.png"));
+            } catch (IOException e) {
+            }
         }));
 
 
@@ -46,12 +42,12 @@ public class Demo {
         }));
 
         setText.add(new MenuItem("Text1", () -> {
-            tray.setIcon("indicator-messages-new");
+            // TODO: change menu text
             JOptionPane.showMessageDialog(null, "Text1");
         }));
 
         setText.add(new MenuItem("Text2", () -> {
-            tray.setIcon("indicator-messages");
+            // TODO: change menu text
             JOptionPane.showMessageDialog(null, "Text2");
         }));
 
@@ -61,16 +57,9 @@ public class Demo {
             System.exit(0);
         }));
 
-
-        Path iconPath = Paths.get(System.getProperty("user.dir"), "src/test/resources/icon.ico");
-
-        if(iconPath.toFile().exists()){
-            tray.setIcon(iconPath.toString());
-        }else{
-            URL resource = Demo.class.getResource("/icon.ico");
-            tray.setIcon(resource != null ? resource.getFile() : null);
-        }
+        tray.setIcon(IconUtils.getIconPath("/notification.png"));
 
         Tray2Library.INSTANCE.create(tray);
+
     }
 }

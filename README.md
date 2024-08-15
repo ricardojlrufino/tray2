@@ -9,9 +9,15 @@ This lib is a wrapper of the class tray implementation in C (https://github.com/
  * Super tiny ( < 50kb ) + JNA
  * Menu Icon
  * Icon transparency support
- * Change Menu Icon
+ * Update Menu Icon
  * Sub-Menus (only 1 level)
- * Separators in the menu 
+ * Separators in the menu  
+
+> NOTE: Max menu items, defined in MAX_MENU_ITEMS = 30 `src/main/native/tray_lib.h`  
+
+
+> NOTE: To icons works on both linux and windows you need a trick     
+> Save a .ico file as .png (16x16)
 
 ## OS Tested:
   * Ubuntu 22.04  - GNOME 3.36.8
@@ -24,6 +30,7 @@ This lib is a wrapper of the class tray implementation in C (https://github.com/
 ## TODO
 * [ ] Disabled/enabled menu items
 * [ ] Checked/unchecked menu items
+* [ ] Update text after init (implements PropertyChangeListener java.beans)
 * [ ] Build for Mac
 * [ ] Github Actions to build binary/lib
   * https://github.com/libuv/libuv/blob/v1.x/.github/workflows/CI-win.yml
@@ -35,6 +42,8 @@ NOTE: This library is in alpha/experimental stage, if you use, please make leave
 ## Example
 
 See [src/test/java/example/Main.java]()
+
+
 
 ## Alternatives
 
